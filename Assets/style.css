@@ -15,3 +15,7 @@ body {
     border-radius: .25em;
     min-height: 250px;
 }
+
+#secure-pw {
+    word-break: break-all;
+}

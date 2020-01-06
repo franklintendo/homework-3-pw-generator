@@ -9,10 +9,7 @@
     <title>Password Generator</title>
 </head>
 <body>
-    <script>
-        
-
-    </script>
+    
     <div class="container">
         <div class="row">
             <div class="col-12 text-center mb-3 mt-2">
@@ -44,5 +41,219 @@
             </div>
         </div>
     </div>
+
+    <script>
+
+            var validation = 0;
+    
+            var options = {
+                letters: [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `m`, `n`, `o`, `p`, `q`, `r`, `s`, `t`, `u`, `v`, `w`, `x`, `y`, `z`],
+                special: [`!`,`"`,`#`,`$`,`%`,`&`,`'`,`(`,`)`,`*`,`+`,`,`,`-`,`.`,`/`,`:`,`;`,"<",`=`,`>`,`?`,`@`,`[`,`]`,`^`,`_`,`{`,`|`,`}`,`~`, "`",`\\`]
+            }
+
+            var userChoice = {
+                pwLength: undefined,
+                specialCharacters: false,
+                numericCharacters: false,
+                lowercaseCharacters: false,
+                uppercaseCharacters: false,
+                userPassword: ``,
+                generateLowercase: function() {
+                    var randomTwentySix = Math.floor(Math.random() * 26);
+                    this.userPassword += options.letters[randomTwentySix].toString(); 
+                },
+                generateUppercase: function() {
+                    var randomTwentySix = Math.floor(Math.random() * 26);
+                    this.userPassword += options.letters[randomTwentySix].toUpperCase().toString(); 
+                },
+                generateNumber: function() {
+                    var randomNumber = Math.floor(Math.random() * 10);
+                    this.userPassword += randomNumber.toString();
+                },
+                generateSpecial: function() {
+                    var randomSpecial = Math.floor(Math.random() * 32);
+                    var generatedSpecial = options.special[randomSpecial].toString();
+                    this.userPassword += generatedSpecial;
+                },
+                generatePw: function() {
+                    for (var i = 0; i <= this.pwLength - 1; i++) {
+                        console.log(i);
+                        console.log("User's desired password length: " + this.pwLength);
+                        console.log("Length of password below: " + this.userPassword.length);
+                        console.log(this.userPassword);
+                        // Generate a password with only lowercase characters
+                        if (this.specialCharacters === false && this.numericCharacters === false && this.lowercaseCharacters === true && this.uppercaseCharacters === false) {
+                            this.generateLowercase();   
+                        } 
+                        // Generate a password with only special characters
+                        else if (this.specialCharacters === true && this.numericCharacters === false && this.lowercaseCharacters === false && this.uppercaseCharacters === false){
+                            this.generateSpecial()
+                        } 
+                        // Generate a password with only numeric characters
+                        else if (this.specialCharacters === false && this.numericCharacters === true && this.lowercaseCharacters === false && this.uppercaseCharacters === false){
+                            this.generateNumber()
+                        } 
+                        // Generate a password with only uppercase characters
+                        else if (this.specialCharacters === false && this.numericCharacters === false && this.lowercaseCharacters === false && this.uppercaseCharacters === true){
+                            this.generateUppercase()
+                        }
+                        // Generate a password with only uppercase characters and lowercase characters
+                         else if (this.specialCharacters === false && this.numericCharacters === false && this.lowercaseCharacters === true && this.uppercaseCharacters === true) {
+                            var randomTwo = Math.floor(Math.random() * 2);
+                            if (randomTwo === 0) {
+                                this.generateUppercase();        
+                            } else {
+                                this.generateLowercase();   
+                            }
+                        } 
+                        // Generate a password with only uppercase characters and numeric characters
+                        else if (this.specialCharacters === false && this.numericCharacters === true && this.lowercaseCharacters === false && this.uppercaseCharacters === true) {
+                            var randomTwo = Math.floor(Math.random() * 2);
+                            if (randomTwo === 0) {
+                                this.generateUppercase();        
+                            } else {
+                                this.generateNumber();   
+                            }
+                        } 
+                        // Generate a password with only numeric characters and lowercase characters
+                        else if (this.specialCharacters === false && this.numericCharacters === true && this.lowercaseCharacters === true && this.uppercaseCharacters === false) {
+                            var randomTwo = Math.floor(Math.random() * 2);
+                            if (randomTwo === 0) {
+                                this.generateLowercase();        
+                            } else {
+                                this.generateNumber();   
+                            }
+                        } 
+                        // Generate a password with only numeric characters and special characters
+                        else if (this.specialCharacters === true && this.numericCharacters === true && this.lowercaseCharacters === false && this.uppercaseCharacters === false) {
+                            var randomTwo = Math.floor(Math.random() * 2);
+                            if (randomTwo === 0) {
+                                this.generateSpecial();        
+                            } else {
+                                this.generateNumber();   
+                            }
+                        } 
+                        // Generate a password with only lowercase characters and special characters
+                        else if (this.specialCharacters === true && this.numericCharacters === false && this.lowercaseCharacters === true && this.uppercaseCharacters === false) {
+                            var randomTwo = Math.floor(Math.random() * 2);
+                            if (randomTwo === 0) {
+                                this.generateSpecial();        
+                            } else {
+                                this.generateLowercase();   
+                            }
+                        } 
+                        // Generate a password with only uppercase characters and special characters
+                        else if (this.specialCharacters === true && this.numericCharacters === false && this.lowercaseCharacters === false && this.uppercaseCharacters === true) {
+                            var randomTwo = Math.floor(Math.random() * 2);
+                            if (randomTwo === 0) {
+                                this.generateSpecial();        
+                            } else {
+                                this.generateUppercase();   
+                            }
+                        } 
+                        // Generate a password with only uppercase characters, numeric characters and lowercase characters
+                        else if (this.specialCharacters === false && this.numericCharacters === true && this.lowercaseCharacters === true && this.uppercaseCharacters === true) {
+                            var randomThree = Math.floor(Math.random() * 3);
+                            if (randomThree === 0) {
+                                this.generateUppercase();        
+                            } else if (randomThree === 1) {
+                                this.generateLowercase();   
+                            } else {
+                                this.generateNumber();  
+                            }
+                        }
+                        // Generate a password with only uppercase characters, numeric characters and special characters
+                        else if (this.specialCharacters === true && this.numericCharacters === true && this.lowercaseCharacters === false && this.uppercaseCharacters === true) {
+                            var randomThree = Math.floor(Math.random() * 3);
+                            if (randomThree === 0) {
+                                this.generateUppercase();        
+                            } else if (randomThree === 1) {
+                                this.generateSpecial();   
+                            } else {
+                                this.generateNumber();  
+                            }
+                        }
+                        // Generate a password with only special characters, numeric characters and lowercase characters
+                        else if (this.specialCharacters === true && this.numericCharacters === true && this.lowercaseCharacters === true && this.uppercaseCharacters === false) {
+                            var randomThree = Math.floor(Math.random() * 3);
+                            if (randomThree === 0) {
+                                this.generateSpecial();        
+                            } else if (randomThree === 1) {
+                                this.generateLowercase();   
+                            } else {
+                                this.generateNumber();  
+                            }
+                        }
+                        // Generate a password with only uppercase characters, special characters and lowercase characters
+                        else if (this.specialCharacters === true && this.numericCharacters === false && this.lowercaseCharacters === true && this.uppercaseCharacters === true) {
+                            var randomThree = Math.floor(Math.random() * 3);
+                            if (randomThree === 0) {
+                                this.generateUppercase();        
+                            } else if (randomThree === 1) {
+                                this.generateLowercase();   
+                            } else {
+                                this.generateSpecial();  
+                            }
+                        } 
+                        // Generate a password if all the parameters are true
+                        else {
+                            var randomFour = Math.floor(Math.random() * 4);
+                            if (randomFour === 0) {
+                                this.generateUppercase();        
+                            } else if (randomFour === 1) {
+                                this.generateLowercase();   
+                            } else if (randomFour === 2) {
+                                this.generateNumber();  
+                            } else {
+                                this.generateSpecial();
+                            }
+                        }
+
+                        // Write the generated password to the web page
+                        document.getElementById('secure-pw').textContent = this.userPassword;
+                    }
+                },
+            };
+
+            // Loop the prompt for number of characters until the user answers between 8-128
+            for (validation = 0; validation < 1;) {
+            // Prompt user to enter how long they want their password to be (between 8 and 128 characters)
+            var passwordLength = prompt(`Please enter how many characters you would like your password to be (between 8 and 128).`);
+    
+            //Check to make sure they entered a number within the parameters
+                if (passwordLength >= 8 && passwordLength <= 128) {
+                    // End loop if number enter is 8-128
+                    validation++;
+                    userChoice.pwLength = passwordLength;
+                }else {
+                    // Tell user that they didn't enter correctly
+                    alert(`Please enter a password between 8 and 128 characters.`);
+                }
+            }
+            
+            // Loop the confirm window until user says okay to one of the four prompts
+            for (validation = 1; validation < 2;) {
+                // Ask the user to decide which type of characters they would like within the password and store within the userChoice object
+                // Special characters
+                userChoice.specialCharacters = window.confirm(`Would you like special characters?`);
+                // Numeric characters
+                userChoice.numericCharacters = window.confirm(`Would you like numeric characters?`);
+                // Lowercase characters
+                userChoice.lowercaseCharacters = window.confirm(`Would you like lowercase characters?`);
+                // Uppercase characters
+                userChoice.uppercaseCharacters = window.confirm(`Would you like uppercase characters?`);
+
+                if (userChoice.specialCharacters === false && userChoice.numericCharacters === false && userChoice.lowercaseCharacters === false && userChoice.uppercaseCharacters === false) {
+                    validation = 1;
+                    alert(`Please select Ok on one of the options.`);
+                } else {
+                    // User hits ok on one of the four confirm windows
+                    validation++;
+                    userChoice.generatePw();
+                }
+            }
+    
+    
+        </script>
 </body>
 </html>
