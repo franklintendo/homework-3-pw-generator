@@ -27,6 +27,7 @@
                     <div class="row">
                         <div class="col-12 px-3 py-3 mt-3 mb-3 text-center secure-pw--container">
                             <span id="secure-pw">Your Secure Password</span>
+                            <div style="opacity: 0;"><input type="text" id="copiedText" value="Your Secure Password"></div>
                         </div>
                     </div>
                     <div class="row border-top">
@@ -34,7 +35,7 @@
                             <button onclick="startGeneratePw()" id="generate-pw" class="btn btn-primary btn-lg btn-block">Generate Password</button>
                         </div>
                         <div class="col-12 col-md-6 text-md-right mt-3">
-                                <button onclick=copyToClipboard()" id="copy-pw" class="btn btn-secondary btn-lg btn-block">Copy to Clipboard</button>
+                                <button onclick="copyToClipboard()" id="copy-pw" class="btn btn-secondary btn-lg btn-block">Copy to Clipboard</button>
                             </div>
                     </div>
                 </div>
@@ -49,7 +50,7 @@
             var validation = 0;
     
             // Options object contains array properties to cycle through letters and special characters
-            // if user wants them, called from the functions in userChoice object below
+            // if user wants them, called from the functions in userChoice object
             var options = {
                 letters: [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `m`, `n`, `o`, `p`, `q`, `r`, `s`, `t`, `u`, `v`, `w`, `x`, `y`, `z`],
                 special: [`!`,`"`,`#`,`$`,`%`,`&`,`'`,`(`,`)`,`*`,`+`,`,`,`-`,`.`,`/`,`:`,`;`,"<",`=`,`>`,`?`,`@`,`[`,`]`,`^`,`_`,`{`,`|`,`}`,`~`, "`",`\\`]
@@ -82,7 +83,7 @@
                     var generatedSpecial = options.special[randomSpecial].toString();
                     this.userPassword += generatedSpecial;
                 },
-                // This generates the password by calling the functions directly above depending on the parameters that the
+                // Generates the password by calling the generate functions depending on the parameters that the
                 // user selected
                 generatePw: function() {
                     for (var i = 0; i <= this.pwLength - 1; i++) {
@@ -269,12 +270,15 @@
             // Starts the generate password process when page loads
             startGeneratePw();
     
+            // Copy to clipboard
+            // The value of hidden input is matched to the generated Password then selected and copied
             function copyToClipboard() {
-                var copiedText = document.getElementById('secure-pw');
-                
+                var copiedText = document.getElementById('copiedText');
+                copiedText.value = userChoice.userPassword;
+                // console.log(userChoice.userPassword);
+                // console.log(copiedText.value);
+                // console.log(copiedText);
                 copiedText.select();
-                copiedText.setSelectionRange(0, 99999);
-
                 document.execCommand("copy");
             }
     

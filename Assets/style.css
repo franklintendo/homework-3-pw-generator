@@ -19,3 +19,7 @@ body {
 #secure-pw {
     word-break: break-all;
 }
+
+input#copiedText:hover {
+    cursor: default;
+}
