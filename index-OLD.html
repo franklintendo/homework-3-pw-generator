@@ -31,7 +31,7 @@
                     </div>
                     <div class="row border-top">
                         <div class="col-12 col-md-6 mt-3">
-                            <button onclick="startGeneratePw()" id="generate-pw" class="btn btn-primary btn-lg">Generate Password</button>
+                            <button onclick="" id="generate-pw" class="btn btn-primary btn-lg">Generate Password</button>
                         </div>
                         <div class="col-12 col-md-6 text-md-right mt-3">
                                 <button id="copy-pw" class="btn btn-secondary btn-lg">Copy to Clipboard</button>
@@ -44,26 +44,19 @@
 
     <script>
 
-            // Validation variable - when variable = 0, user is being asked to enter number
-            // when variable is 1, the user is being asked about which characters they would like in password
             var validation = 0;
     
-            // Options object contains array properties to cycle through letters and special characters
-            // if user wants them, called from the functions in userChoice object below
             var options = {
                 letters: [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `m`, `n`, `o`, `p`, `q`, `r`, `s`, `t`, `u`, `v`, `w`, `x`, `y`, `z`],
                 special: [`!`,`"`,`#`,`$`,`%`,`&`,`'`,`(`,`)`,`*`,`+`,`,`,`-`,`.`,`/`,`:`,`;`,"<",`=`,`>`,`?`,`@`,`[`,`]`,`^`,`_`,`{`,`|`,`}`,`~`, "`",`\\`]
             }
 
             var userChoice = {
-                // Password Length that user enters is stored in property below
                 pwLength: undefined,
-                // The characters that user wants is stored below. One of these must be labeled true
                 specialCharacters: false,
                 numericCharacters: false,
                 lowercaseCharacters: false,
                 uppercaseCharacters: false,
-                // The user password is stored below
                 userPassword: ``,
                 generateLowercase: function() {
                     var randomTwentySix = Math.floor(Math.random() * 26);
@@ -82,8 +75,6 @@
                     var generatedSpecial = options.special[randomSpecial].toString();
                     this.userPassword += generatedSpecial;
                 },
-                // This generates the password by calling the functions directly above depending on the parameters that the
-                // user selected
                 generatePw: function() {
                     for (var i = 0; i <= this.pwLength - 1; i++) {
                         console.log(i);
@@ -224,53 +215,44 @@
                 },
             };
 
-
-            function startGeneratePw() {
-                // Loop the prompt for number of characters until the user answers between 8-128
-                for (validation = 0; validation < 1;) {
-                // Prompt user to enter how long they want their password to be (between 8 and 128 characters)
-                var passwordLength = prompt(`Please enter how many characters you would like your password to be (between 8 and 128).`);
-        
-                //Check to make sure they entered a number within the parameters
-                    if (passwordLength >= 8 && passwordLength <= 128) {
-                        // End loop if number enter is 8-128
-                        validation++;
-                        userChoice.pwLength = passwordLength;
-                    }else {
-                        // Tell user that they didn't enter correctly
-                        alert(`Please enter a password between 8 and 128 characters.`);
-                    }
-                }
-                
-                // Loop the confirm window until user says okay to one of the four prompts
-                for (validation = 1; validation < 2;) {
-                    // Ask the user to decide which type of characters they would like within the password and store within the userChoice object
-                    // Special characters
-                    userChoice.specialCharacters = window.confirm(`Would you like special characters?`);
-                    // Numeric characters
-                    userChoice.numericCharacters = window.confirm(`Would you like numeric characters?`);
-                    // Lowercase characters
-                    userChoice.lowercaseCharacters = window.confirm(`Would you like lowercase characters?`);
-                    // Uppercase characters
-                    userChoice.uppercaseCharacters = window.confirm(`Would you like uppercase characters?`);
-
-                    if (userChoice.specialCharacters === false && userChoice.numericCharacters === false && userChoice.lowercaseCharacters === false && userChoice.uppercaseCharacters === false) {
-                        validation = 1;
-                        alert(`Please select Ok on one of the options.`);
-                    } else {
-                        // User hits ok on one of the four confirm windows
-                        validation++;
-                        userChoice.generatePw();
-                    }
-                }
-            }
-
-            // Starts the generate password process when page loads
-            startGeneratePw();
+            // Loop the prompt for number of characters until the user answers between 8-128
+            for (validation = 0; validation < 1;) {
+            // Prompt user to enter how long they want their password to be (between 8 and 128 characters)
+            var passwordLength = prompt(`Please enter how many characters you would like your password to be (between 8 and 128).`);
     
-            function copyToClipboard {
-                
+            //Check to make sure they entered a number within the parameters
+                if (passwordLength >= 8 && passwordLength <= 128) {
+                    // End loop if number enter is 8-128
+                    validation++;
+                    userChoice.pwLength = passwordLength;
+                }else {
+                    // Tell user that they didn't enter correctly
+                    alert(`Please enter a password between 8 and 128 characters.`);
+                }
             }
+            
+            // Loop the confirm window until user says okay to one of the four prompts
+            for (validation = 1; validation < 2;) {
+                // Ask the user to decide which type of characters they would like within the password and store within the userChoice object
+                // Special characters
+                userChoice.specialCharacters = window.confirm(`Would you like special characters?`);
+                // Numeric characters
+                userChoice.numericCharacters = window.confirm(`Would you like numeric characters?`);
+                // Lowercase characters
+                userChoice.lowercaseCharacters = window.confirm(`Would you like lowercase characters?`);
+                // Uppercase characters
+                userChoice.uppercaseCharacters = window.confirm(`Would you like uppercase characters?`);
+
+                if (userChoice.specialCharacters === false && userChoice.numericCharacters === false && userChoice.lowercaseCharacters === false && userChoice.uppercaseCharacters === false) {
+                    validation = 1;
+                    alert(`Please select Ok on one of the options.`);
+                } else {
+                    // User hits ok on one of the four confirm windows
+                    validation++;
+                    userChoice.generatePw();
+                }
+            }
+    
     
         </script>
 </body>
