@@ -31,10 +31,10 @@
                     </div>
                     <div class="row border-top">
                         <div class="col-12 col-md-6 mt-3">
-                            <button onclick="startGeneratePw()" id="generate-pw" class="btn btn-primary btn-lg">Generate Password</button>
+                            <button onclick="startGeneratePw()" id="generate-pw" class="btn btn-primary btn-lg btn-block">Generate Password</button>
                         </div>
                         <div class="col-12 col-md-6 text-md-right mt-3">
-                                <button id="copy-pw" class="btn btn-secondary btn-lg">Copy to Clipboard</button>
+                                <button onclick=copyToClipboard()" id="copy-pw" class="btn btn-secondary btn-lg btn-block">Copy to Clipboard</button>
                             </div>
                     </div>
                 </div>
@@ -268,8 +268,13 @@
             // Starts the generate password process when page loads
             startGeneratePw();
     
-            function copyToClipboard {
+            function copyToClipboard() {
+                var copiedText = document.getElementById('secure-pw');
                 
+                copiedText.select();
+                copiedText.setSelectionRange(0, 99999);
+
+                document.execCommand("copy");
             }
     
         </script>
